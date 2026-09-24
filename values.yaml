@@ -1,0 +1,25 @@
+# Default values for newspaper.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+postgres:
+  image: postgres:13-alpine
+  port: 5432
+  dbname: news
+  dbuser: postgres
+  # dbpassword is generated and placed to the Secret {{ .Release.Name }}-secrets
+
+backend:
+  image: kraktorist/news-backend:1.0
+  replicas: 1
+
+frontend:
+  image: kraktorist/news-frontend:1.4
+  replicas: 1
+
+pvc:
+  claimNameSuffix: static
+  storage: 100Mi
+
+# Hostname for the site
+hostname: www.example.com

@@ -36,7 +36,7 @@ NAMESPACE: app1
 STATUS: deployed
 REVISION: 1
 ```
-Деплоим второй релиз `beta` в тот же namespace
+#### Запуск второго релиза в тот же namespace
 
 ```console
 vboxuser@ubuntu:~/$ helm -n app1 install beta newspaper --set hostname=beta
@@ -47,7 +47,7 @@ STATUS: deployed
 REVISION: 1
 ```
 
-Деплоим релиз `gamma` в namespace `app2`
+#### Запуск в namespace `app2`
 
 ```console
 vboxuser@ubuntu:~/$ helm -n app2 install gamma newspaper --set hostname=gamma
@@ -58,7 +58,7 @@ STATUS: deployed
 REVISION: 1
 ```
 
-Тестируем все три релиза
+#### Тест всех 3-х релизов
 
 ```console
 vboxuser@ubuntu:~/$ helm -n app1 test alpha
@@ -105,7 +105,7 @@ Last Completed: Tue Sep 27 22:12:00 2022
 Phase:          Succeeded
 ```
 
-Проверяем поды:
+#### Проверка подов:
 
 ```console
 vboxuser@ubuntu:~/$ kubectl get pods -A | (head -n 1; grep app)

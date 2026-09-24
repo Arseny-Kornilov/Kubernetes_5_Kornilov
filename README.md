@@ -26,10 +26,10 @@
 Продемонстрируйте результат.
 
  ### ОТВЕТ:
- Деплоим первый релиз `alpha` в namespace `app1`
+ #### Запуск в namespace `app1`
 
 ```console
-vagrant@vagrant:/$ helm -n app1 install alpha newspaper
+vboxuser@ubuntu:/$ helm -n app1 install alpha newspaper
 NAME: alpha
 LAST DEPLOYED: Tue Sep 27 21:55:56 2022
 NAMESPACE: app1
@@ -39,7 +39,7 @@ REVISION: 1
 Деплоим второй релиз `beta` в тот же namespace
 
 ```console
-vagrant@vagrant:~/$ helm -n app1 install beta newspaper --set hostname=beta
+vboxuser@ubuntu:~/$ helm -n app1 install beta newspaper --set hostname=beta
 NAME: beta
 LAST DEPLOYED: Tue Sep 27 22:04:04 2022
 NAMESPACE: app1
@@ -50,7 +50,7 @@ REVISION: 1
 Деплоим релиз `gamma` в namespace `app2`
 
 ```console
-vagrant@vagrant:~/$ helm -n app2 install gamma newspaper --set hostname=gamma
+vboxuser@ubuntu:~/$ helm -n app2 install gamma newspaper --set hostname=gamma
 NAME: gamma
 LAST DEPLOYED: Tue Sep 27 22:06:56 2022
 NAMESPACE: app2
@@ -61,7 +61,7 @@ REVISION: 1
 Тестируем все три релиза
 
 ```console
-vagrant@vagrant:~/$ helm -n app1 test alpha
+vboxuser@ubuntu:~/$ helm -n app1 test alpha
 NAME: alpha
 LAST DEPLOYED: Tue Sep 27 21:55:56 2022
 NAMESPACE: app1
@@ -75,7 +75,7 @@ TEST SUITE:     alpha-test-frontend-connection
 Last Started:   Tue Sep 27 22:11:20 2022
 Last Completed: Tue Sep 27 22:11:23 2022
 Phase:          Succeeded
-vagrant@vagrant:~/$ helm -n app1 test beta
+vboxuser@ubuntu:~/$ helm -n app1 test beta
 NAME: beta
 LAST DEPLOYED: Tue Sep 27 22:04:04 2022
 NAMESPACE: app1
@@ -89,7 +89,7 @@ TEST SUITE:     beta-test-frontend-connection
 Last Started:   Tue Sep 27 22:11:32 2022
 Last Completed: Tue Sep 27 22:11:35 2022
 Phase:          Succeeded
-vagrant@vagrant:~/$ helm -n app2 test gamma
+vboxuser@ubuntu:~/$ helm -n app2 test gamma
 NAME: gamma
 LAST DEPLOYED: Tue Sep 27 22:06:56 2022
 NAMESPACE: app2
@@ -108,7 +108,7 @@ Phase:          Succeeded
 Проверяем поды:
 
 ```console
-vagrant@vagrant:~/$ kubectl get pods -A | (head -n 1; grep app)
+vboxuser@ubuntu:~/$ kubectl get pods -A | (head -n 1; grep app)
 NAMESPACE       NAME                                  READY   STATUS    RESTARTS        AGE
 app1            alpha-backend-5ddd775798-mgrl9        1/1     Running   0               22m
 app1            alpha-frontend-786bb5cd7c-cx952       1/1     Running   0               22m
